@@ -17,8 +17,8 @@ public class HelloWorld extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.write("<html>");
 		out.write("    <body>");
-		out.write("	       <h1>Hello World! [09/07 - 20:47]</h1>");
-		out.write("	   <body>");
+		out.write("        <h1>Hello World! [09/07 - 20:47]</h1>");
+		out.write("    <body>");
 		out.write("</html>");
 		System.out.println("O Servlet foi chamado com sucessso!");
 	}
