@@ -4,6 +4,7 @@ package servlet.Actions;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +31,10 @@ public class NovaEmpresaServlet extends HttpServlet {
 		Banco banco = new Banco();
 		banco.adicionaEmpresa(empresa);
 		
-		String text = String.format("Empresa %s cadastrada com sucesso", empresa.getNome());
+		request.setAttribute("nomeEmpresa", empresa.getNome());
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("new-empresa-success.jsp");
+		requestDispatcher.forward(request, response);
 		
-		PrintWriter out = response.getWriter();
-		out.write(text);
 	}
 
 }

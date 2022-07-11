@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,14 +25,8 @@ public class ListaEmpresasServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Imprimindo todas as empresas cadastradas:");
 		Banco banco = new Banco();
-		List<Empresa> empresas = banco.getEmpresas();
-		PrintWriter out = response.getWriter();
-		out.write("<html><body>");
-		out.write("<ul>");
-		empresas.forEach(empresa -> out.write("<li>" + empresa.getNome() + "</li>"));
-		out.write("</ul");
-		out.write("</body></html");
-		
-		
+		request.setAttribute("empresas", banco.getEmpresas());
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/lista-empresas.jsp");
+		requestDispatcher.forward(request, response);		
 	}
 }
