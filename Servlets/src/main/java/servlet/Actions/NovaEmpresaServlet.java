@@ -27,8 +27,9 @@ public class NovaEmpresaServlet extends HttpServlet {
 		System.out.println("--- Cadastrando uma nova empresa ---");
 		Banco banco = new Banco();
 		banco.adicionaEmpresa(criaEmpresa(request));
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("new-empresa-success.jsp");
-		requestDispatcher.forward(request, response);
+		response.sendRedirect("lista-empresas");
+		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("/lista-empresas");
+		//requestDispatcher.forward(request, response);
 	}
 	
 	private Empresa criaEmpresa(HttpServletRequest request) throws ServletException {
@@ -37,11 +38,10 @@ public class NovaEmpresaServlet extends HttpServlet {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			empresa.setDataAbertura(format.parse(request.getParameter("dataAbertura")));
-			System.out.println(empresa.getDataAbertura());
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
-		request.setAttribute("nomeEmpresa", empresa.getNome());
+		//request.setAttribute("nomeEmpresa", empresa.getNome());
 		return empresa;
 	}
 

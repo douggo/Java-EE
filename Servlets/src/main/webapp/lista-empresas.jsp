@@ -17,5 +17,8 @@
 				<li>${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/></li>
 			</core:forEach>
 		</ul>
+		<core:if test="${not empty nomeEmpresa}">
+			<h3 style="color: blue;">Empresa ${nomeEmpresa} cadastrada com sucesso!</h3>
+		</core:if>
 	</body>
 </html>
