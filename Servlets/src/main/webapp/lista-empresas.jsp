@@ -3,6 +3,8 @@
 <%@ page import="java.util.List, servlet.Model.Empresa" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<core:url value="/remove-empresa" var="linkRemover" />
+<core:url value="/mostra-empresa" var="linkMostrar" />
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +16,11 @@
 		<h1>Listando empresas cadastradas:</h1>
 		<ul>
 			<core:forEach items="${empresas}" var="empresa">
-				<li>${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/></li>
+				<li>
+					${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/> |
+					<a href='${linkRemover}?id=${empresa.id}'>remover</a> |
+					<a href='${linkMostrar}?id=${empresa.id}'>alterar</a>
+				</li>
 			</core:forEach>
 		</ul>
 		<core:if test="${not empty nomeEmpresa}">

@@ -15,7 +15,7 @@
         </div>
         <div>
         	<label>Data:</label>
-        	<input type="text" name="dataAbertura"
+        	<input type="text" name="dataAbertura" />
         </div>
         <div>
         	<input type="submit" />
