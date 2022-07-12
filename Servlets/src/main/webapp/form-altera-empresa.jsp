@@ -10,7 +10,10 @@
 <title>Alterar dados da empresa</title>
 </head>
 <body>
-    <form action="${linkAlteraEmpresa}" method="put">
+    <form action="${linkAlteraEmpresa}" method="post">
+    	<div>
+    		<input type="hidden" name="id" value="${empresa.id}">
+    	</div>
     	<div>
     		<label>Nome:</label>
         	<input type="text" name="nome" value="${empresa.nome}"/>

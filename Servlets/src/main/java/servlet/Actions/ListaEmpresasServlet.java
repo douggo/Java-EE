@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import servlet.Model.Banco;
 import servlet.Model.Empresa;
 
-/**
- * Servlet implementation class ListaEmpresasServlet
- */
+
 @WebServlet("/lista-empresas")
 public class ListaEmpresasServlet extends HttpServlet {
 	

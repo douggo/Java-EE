@@ -24,6 +24,7 @@ public class Empresa {
 	public Date getDataAbertura() {
 		return dataAbertura;
 	}
+	
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}

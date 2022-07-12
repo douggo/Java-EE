@@ -41,7 +41,7 @@ public class Banco {
 		}
 	}
 
-	public static Empresa getEmpresaById(Integer id) {
+	public Empresa getEmpresaById(Integer id) {
 		for(Empresa empresa : empresas) {
 			if(empresa.getId() == id) {
 				return empresa;

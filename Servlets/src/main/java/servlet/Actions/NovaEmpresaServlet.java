@@ -1,6 +1,5 @@
 package servlet.Actions;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -15,9 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import servlet.Model.Banco;
 import servlet.Model.Empresa;
 
-/**
- * Servlet implementation class NovaEmpresaServlet
- */
 @WebServlet("/new-empresa")
 public class NovaEmpresaServlet extends HttpServlet {
 	
