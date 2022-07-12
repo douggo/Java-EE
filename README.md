@@ -2,11 +2,29 @@
 
 Aqui teremos um compilado sobre os estudos do Java EE, utilizando a plataforma de ensino Alura.
 
-- [ ] Servlets
+- [X] Servlets
 - [ ] JPA
 
 ---
 
 ## Recap
 
-Nada foi encontrado que necessite de uma forma de revisão.
+- Scriptlet
+
+- Expression Language
+
+- Taglib (core/fmt)
+
+- Server side rendering
+
+- Client side rendering
+
+- web.xml
+
+- url-patterns
+
+- Annotations
+
+- Tomcat Lazy Loading (Singleton)
+
+- Java Server Page
