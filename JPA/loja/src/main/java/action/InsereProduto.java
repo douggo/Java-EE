@@ -15,24 +15,28 @@ public class InsereProduto {
     public static void main(String[] args) {
         criaLivro();
         insereLivro();
-        System.out.println("Livro " + livro.getNome() + " inserido com sucesso");
     }
 
     private static void criaLivro() {
-        livro = new Produto();
-        livro.setNome("Java Efetivo - Terceira Edição");
-        livro.setDescricao("Livro focado nas melhores "
-            + "práticas para o desenvolvimento de aplicações em Java");
-        livro.setPreco(new BigDecimal("84.99"));
+        InsereProduto.livro = new Produto();
+        InsereProduto.livro.setNome("Java Efetivo - Terceira Edição");
+        InsereProduto.livro.setDescricao("Livro focado nas melhores práticas para o desenvolvimento de aplicações em Java");
+        InsereProduto.livro.setPreco(new BigDecimal("84.99"));
     }
 
     private static void insereLivro() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("loja");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(livro);
+        EntityManager entityManager = createEntityManager();
+        entityManager.persist(InsereProduto.livro);
         entityManager.getTransaction().commit();
         entityManager.close();
+        System.out.println("Livro " + InsereProduto.livro.getNome() + " inserido com sucesso");
+    }
+
+    private static EntityManager createEntityManager() {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("loja");
+        EntityManager entityManager = emFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        return entityManager;
     }
 
 }
