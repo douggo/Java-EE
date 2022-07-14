@@ -3,7 +3,7 @@
 Aqui teremos um compilado sobre os estudos do Java EE, utilizando a plataforma de ensino Alura.
 
 - [X] Servlets
-- [ ] JPA
+- [X] JPA
 
 ---
 
