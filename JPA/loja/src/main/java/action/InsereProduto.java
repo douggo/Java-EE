@@ -1,6 +1,7 @@
 package action;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -17,6 +18,51 @@ public class InsereProduto {
     public static void main(String[] args) {
         criaLivro();
         insereLivro();
+        //imprimeLivro();
+        //buscaLivroFromNome("Java");
+        //buscaLivroFromCategoria("Livro");
+        buscaPrecoFromNomeProduto(1L);
+    }
+
+    private static void buscaPrecoFromNomeProduto(Long id) {
+        String jpql = "SELECT p.preco FROM Produto p WHERE p.id = :id";
+        BigDecimal preco = JPAUtil.getEntityManager()
+            .createQuery(jpql, BigDecimal.class)
+            .setParameter("id", id)
+            .getSingleResult();
+         System.out.println("Preco do Produto " + id + " é: R$ " + preco);
+    }
+
+    private static void buscaLivroFromCategoria(String nome) {
+        String jpql = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome";
+        List<Produto> produtos = JPAUtil.getEntityManager()
+            .createQuery(jpql, Produto.class)
+            .setParameter("nome", nome)
+            .getResultList();
+        for(Produto produto : produtos) {
+            System.out.println("Produto: " + produto.getNome());
+        }
+    }
+
+    private static void buscaLivroFromNome(String nome) {
+        String jpql = "SELECT p FROM Produto p WHERE p.nome = :nome";
+        List<Produto> produtos = JPAUtil.getEntityManager()
+            .createQuery(jpql, Produto.class)
+            .setParameter("nome", nome)
+            .getResultList();
+        for(Produto produto : produtos) {
+            System.out.println("Produto: " + produto.getNome());
+        }
+    }
+
+    private static void imprimeLivro() {
+        String jpql = "SELECT p FROM Produto p";
+        List<Produto> produtos = JPAUtil.getEntityManager().createQuery(jpql, Produto.class).getResultList();
+        for(Produto produto : produtos) {
+            System.out.println("Produto: " + produto.getNome());
+        }
+        Produto produto2 = JPAUtil.getEntityManager().find(Produto.class, 1L);
+        System.out.println("Produto2: " + produto2.getNome());
     }
 
     private static void criaLivro() {
@@ -48,8 +94,9 @@ public class InsereProduto {
         Produto livro = entityManager.merge(InsereProduto.livro);
         livro.setPreco(new BigDecimal("98.65"));
         entityManager.flush();
-        produtoDao.remover(livro);
+        //produtoDao.remover(livro);
         entityManager.getTransaction().commit();
+        entityManager.close();
         System.out.println("Livro " + InsereProduto.livro.getNome() + " inserido com sucesso");
     }
 
