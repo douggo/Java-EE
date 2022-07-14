@@ -44,8 +44,12 @@ public class InsereProduto {
         ProdutoDao produtoDao = new ProdutoDao(entityManager);
         entityManager.getTransaction().begin();
         produtoDao.cadastrar(InsereProduto.livro);
+        entityManager.flush();
+        Produto livro = entityManager.merge(InsereProduto.livro);
+        livro.setPreco(new BigDecimal("98.65"));
+        entityManager.flush();
+        produtoDao.remover(livro);
         entityManager.getTransaction().commit();
-        entityManager.close();
         System.out.println("Livro " + InsereProduto.livro.getNome() + " inserido com sucesso");
     }
 

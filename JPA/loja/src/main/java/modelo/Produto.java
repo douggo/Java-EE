@@ -31,6 +31,10 @@ public class Produto {
     @ManyToOne
     private Categoria categoria;
 
+    public Produto() {
+        
+    }
+
     public Long getId() {
         return id;
     }

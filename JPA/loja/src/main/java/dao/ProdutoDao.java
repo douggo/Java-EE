@@ -15,6 +15,11 @@ public class ProdutoDao {
     public void cadastrar(Produto produto) {
         this.entityManager.persist(produto);
     }
+
+    public void remover(Produto produto) {
+        produto = this.entityManager.merge(produto);
+        this.entityManager.remove(produto);
+    }
     
 
 }
