@@ -3,10 +3,10 @@ package action;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+import dao.ProdutoDao;
 import modelo.Produto;
+import util.JPAUtil;
 
 public class InsereProduto {
     
@@ -25,18 +25,15 @@ public class InsereProduto {
     }
 
     private static void insereLivro() {
-        EntityManager entityManager = createEntityManager();
-        entityManager.persist(InsereProduto.livro);
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        ProdutoDao produtoDao = new ProdutoDao(entityManager);
+
+        entityManager.getTransaction().begin();
+        produtoDao.cadastrar(InsereProduto.livro);
         entityManager.getTransaction().commit();
         entityManager.close();
-        System.out.println("Livro " + InsereProduto.livro.getNome() + " inserido com sucesso");
-    }
 
-    private static EntityManager createEntityManager() {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("loja");
-        EntityManager entityManager = emFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        return entityManager;
+        System.out.println("Livro " + InsereProduto.livro.getNome() + " inserido com sucesso");
     }
 
 }
