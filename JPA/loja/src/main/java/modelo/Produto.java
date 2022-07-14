@@ -5,11 +5,10 @@ import java.time.LocalDate;
 
 //import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +18,7 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String nome;
 
     //@Column(name = "desc") -> caso o nome da coluna seja diferente do atributo no model
@@ -29,7 +28,7 @@ public class Produto {
 
     private LocalDate dataCadastrado = LocalDate.now();
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Categoria categoria;
 
     public Long getId() {
